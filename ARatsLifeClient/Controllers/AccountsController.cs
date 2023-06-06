@@ -7,7 +7,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace ARatsLifeClient.Controllers;
 
-  public class AccountController : Controller
+  public class AccountsController : Controller
   {
     // private readonly ARatsLifeClientContext _db;
     // private readonly UserManager<ApplicationUser> _userManager;
