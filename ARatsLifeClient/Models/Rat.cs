@@ -20,8 +20,8 @@ public class Rat
     var result = apiCallTask.Result;
 
     JArray jsonResponse = JsonConvert.DeserializeObject<JArray>(result);
-    List<Rat> animalList = JsonConvert.DeserializeObject<List<Rat>>(jsonResponse.ToString());
+    List<Rat> ratList = JsonConvert.DeserializeObject<List<Rat>>(jsonResponse.ToString());
 
-    return animalList; 
+    return ratList; 
   }
 }
