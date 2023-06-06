@@ -1,0 +1,19 @@
+@{
+    ViewData["Title"] = "Animals";
+}
+
+<h1>Roster of Registered Rodents:</h1>
+
+@if (Model.Count == 0 )
+{
+  <p>There are no Rats in Brooklyn!</p>
+}
+else
+{
+  <ol>
+@foreach (Rat rat in Model)
+{
+  <li><strong>@rat.Name</strong> | Current Heat Rating: <strong>@rat.Heat</strong> | <a href="/Rats/Details/@(rat.RatId)">View Details</a></li>
+}
+</ol>
+}
