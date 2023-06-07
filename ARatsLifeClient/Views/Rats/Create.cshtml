@@ -1,0 +1,15 @@
+@{
+  ViewData ["Title"] = "Rat Maker";
+}
+
+@model ARatsLifeClient.Models.Rat
+
+<h4>Mega Rat Maker</h4>
+
+@using (Html.BeginForm())
+{
+  @Html.LabelFor(model => model.Name)
+  @Html.TextBoxFor(model => model.Name)
+
+  <input type="submit" value="Add Rat" class="btn">
+}

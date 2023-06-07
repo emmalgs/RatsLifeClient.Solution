@@ -24,4 +24,27 @@ public class Rat
 
     return ratList; 
   }
+
+  public static Rat GetDetails(int id)
+  {
+    var apiCallTask = ApiHelper.Get(id);
+    var result = apiCallTask.Result;
+
+    JObject jsonResponse = JsonConvert.DeserializeObject<JObject>(result);
+    Rat thisRat = JsonConvert.DeserializeObject<Rat>(jsonResponse.ToString());
+
+    return thisRat;
+  }
+
+    public static void Post(Rat rat)
+    {
+      string jsonRat = JsonConvert.SerializeObject(rat);
+      ApiHelper.Post(jsonRat);
+    }
+
+    public static void Put(Rat changeRat)
+    {
+      string jsonRat = JsonConvert.SerializeObject(changeRat);
+      ApiHelper.Put(changeRat.RatId, jsonRat);
+    }
 }

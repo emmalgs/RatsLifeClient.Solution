@@ -1,0 +1,19 @@
+@{
+  ViewData ["Title"] = $"Details for {Model.Name}";
+}
+
+<h1>All About @Model.Name</h1>
+
+<p>Heat Level: @Model.Heat</p>
+
+@if (@Model.Heat >= 50)
+{
+  <p> Watch your back! This Rat's in serious trouble! </p>
+}
+else
+{
+  <p> This Rat's doing alright. Stay frosty! </p>
+}
+
+@Html.ActionLink("Back to Rats", "Index")
+@Html.ActionLink("Rat Creater", "Create")
