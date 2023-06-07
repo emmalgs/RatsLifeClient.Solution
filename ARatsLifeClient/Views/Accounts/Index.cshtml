@@ -4,4 +4,10 @@
 
 <h1>Accounts Page</h1>
 
+@if (User.Identity.IsAuthenticated)
+{
+  <p>Hello @User.Identity.Name!</p>
+}
+
 <p>@Html.ActionLink("Register", "Register")</p>
+<p>@Html.ActionLink("Login", "Login")</p>

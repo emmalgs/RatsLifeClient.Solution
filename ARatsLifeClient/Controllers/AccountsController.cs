@@ -42,6 +42,25 @@ namespace ARatsLifeClient.Controllers;
       return View();
     }
 
+
+    [HttpPost]
+    public ActionResult Login(ApplicationUser applicationUser)
+    {
+      if(!ModelState.IsValid)
+      {
+        return View(applicationUser);
+      }
+      else
+      {
+      var result = ApplicationUser.Login(applicationUser);
+
+      // if (result.Succeeded)
+      // {
+
+      // }
+      return RedirectToAction("Index");
+      }
+    }
   //   [HttpPost]
   //   public async Task<ActionResult> Login(LoginViewModel model)
   //   {
