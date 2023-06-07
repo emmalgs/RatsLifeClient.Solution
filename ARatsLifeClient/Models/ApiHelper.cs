@@ -47,6 +47,55 @@ namespace ARatsLifeClient.Models
       await client.DeleteAsync(request);
     }
 
+    public static async void PostJourney(int id, string storyRat)
+    {
+      RestClient client = new RestClient("http://localhost:5102/");
+      RestRequest request = new RestRequest($"api/rats/{id}/journey", Method.Post);
+      request.AddHeader("Content-Type", "application/json");
+      request.AddJsonBody(storyRat);
+      await client.PostAsync(request);
+    }
+
+    public static async Task<string> GetRatJournies(int id)
+    {
+      RestClient client = new RestClient("http://localhost:5102/");
+      RestRequest request = new RestRequest($"api/rats/{id}/journey", Method.Get);
+      RestResponse response = await client.GetAsync(request);
+      return response.Content;
+    }
+
+    public static async Task<string> GetAllItems()
+    {
+      RestClient client = new RestClient("http://localhost:5102/");
+      RestRequest request = new RestRequest($"api/items", Method.Get);
+      RestResponse response = await client.GetAsync(request);
+      return response.Content;
+    }
+
+    public static async Task<string> GetItemDetail(int id)
+    {
+      RestClient client = new RestClient("http://localhost:5102");
+      RestRequest request = new RestRequest($"api/items/{id}", Method.Get);
+      RestResponse response = await client.GetAsync(request);
+      return response.Content;
+    }
+
+    public static async Task<string> GetAllPlotpoints()
+    {
+      RestClient client = new RestClient("http://localhost:5102/");
+      RestRequest request = new RestRequest($"api/plotpoints", Method.Get);
+      RestResponse response = await client.GetAsync(request);
+      return response.Content;
+    }
+     
+    public static async Task<string> GetPlotpointDetail(int id)
+    {
+      RestClient client = new RestClient("http://localhost:5102");
+      RestRequest request = new RestRequest($"api/plotpoints/{id}", Method.Get);
+      RestResponse response = await client.GetAsync(request);
+      return response.Content;
+    }
+
     //--------------------------- 
     // for application users
 

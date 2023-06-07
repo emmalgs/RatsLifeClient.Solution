@@ -54,4 +54,15 @@ public class RatsController : Controller
     Rat.Delete(id);
     return RedirectToAction("Index");
   }
+
+  public IActionResult AddToJourney()
+  {
+    return View();
+  }
+
+  [HttpPost]
+  public ActionResult AddToJourney(int id)
+  {
+    return View();
+  }
 }

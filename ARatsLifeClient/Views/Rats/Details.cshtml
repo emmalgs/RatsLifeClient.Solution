@@ -1,6 +1,7 @@
 @{
   ViewData ["Title"] = $"Details for {Model.Name}";
 }
+@using ARatsLifeClient.Models
 
 <h1>All About @Model.Name</h1>
 
@@ -14,6 +15,20 @@ else
 {
   <p> This Rat's doing alright. Stay frosty! </p>
 }
+
+<p>Journey: 
+  @if (Model.Journey.Count == 0)
+  {
+    <p>You need to beign your journey!</p>
+  }
+  else
+  {
+    @foreach (Journey journey in Model.Journey)
+    {
+      <p>Plotpoint: @journey.Plotpoint.Description</p>
+    }
+  }
+</p>
 
 @Html.ActionLink("Back to Rats", "Index")
 @Html.ActionLink("Rat Creater", "Create")

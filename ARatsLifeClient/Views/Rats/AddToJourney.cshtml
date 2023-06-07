@@ -1,0 +1,15 @@
+@{
+  ViewData ["Title"] = "Your Journey";
+}
+
+@model ARatsLifeClient.Models.Rat
+
+<h4>The next step in your journy...</h4>
+
+@using (Html.BeginForm())
+{
+  @Html.LabelFor(model => model.Name)
+  @Html.TextBoxFor(model => model.Name)
+
+  <input type="submit" value="Add Rat" class="btn">
+}
