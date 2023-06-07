@@ -38,6 +38,22 @@ public class Rat
     JArray jsonResponseJourney = JsonConvert.DeserializeObject<JArray>(resultJourney);
     List<Journey> ratsJourney = JsonConvert.DeserializeObject<List<Journey>>(jsonResponseJourney.ToString());
 
+    var apiCallTaskInventory = ApiHelper.GetRatInventory(id);
+    var resultInventory = apiCallTaskInventory.Result;
+
+    JArray jsonResponseInventory = JsonConvert.DeserializeObject<JArray>(resultInventory);
+    List<Inventory> ratsInventory = JsonConvert.DeserializeObject<List<Inventory>>(jsonResponseInventory.ToString());
+
+    foreach(Inventory inventory in ratsInventory)
+    {
+      var apiCallTaskItem = ApiHelper.GetItemDetail(inventory.ItemId);
+      var resultItem = apiCallTaskItem.Result;
+      
+      JObject jsonResponseItem = JsonConvert.DeserializeObject<JObject>(resultItem);
+      Item thisItem = JsonConvert.DeserializeObject<Item>(jsonResponseItem.ToString());
+
+      inventory.Item = thisItem;
+    }
     foreach (Journey journey in ratsJourney)
     {
       var apiCallTaskPp = ApiHelper.GetPlotpointDetail(journey.PlotpointId);
@@ -46,9 +62,18 @@ public class Rat
       JObject jsonResponsePp = JsonConvert.DeserializeObject<JObject>(resultPp);
       Plotpoint thisPp = JsonConvert.DeserializeObject<Plotpoint>(jsonResponsePp.ToString());
 
+      var apiCallTaskChoice = ApiHelper.GetChoiceDetail(journey.ChoiceId);
+      var resultChoice = apiCallTaskChoice.Result;
+
+      JObject jsonResponseChoice = JsonConvert.DeserializeObject<JObject>(resultChoice);
+      Choice thisChoice = JsonConvert.DeserializeObject<Choice>(jsonResponseChoice.ToString());
+
+
+      journey.Choice = thisChoice;
       journey.Plotpoint = thisPp;
     }
 
+    thisRat.ItemInventory = ratsInventory;
     thisRat.Journey = ratsJourney;
     return thisRat;
   }

@@ -5,6 +5,7 @@ namespace ARatsLifeClient.Models
 {
   public class ApiHelper
   {
+    // Rat functions vvv
     public static async Task<string> GetAll()
     {
       RestClient client = new RestClient("http://localhost:5102/");
@@ -64,6 +65,18 @@ namespace ARatsLifeClient.Models
       return response.Content;
     }
 
+    public static async Task<string> GetRatInventory(int id)
+    {
+      RestClient client = new RestClient("http://localhost:5102/");
+      RestRequest request = new RestRequest($"api/rats/{id}/inventories", Method.Get);
+      RestResponse response = await client.GetAsync(request);
+      return response.Content;
+    }
+
+// rat functions ^^^^
+// ------------------------------------------
+// item functions vvvv
+
     public static async Task<string> GetAllItems()
     {
       RestClient client = new RestClient("http://localhost:5102/");
@@ -80,6 +93,11 @@ namespace ARatsLifeClient.Models
       return response.Content;
     }
 
+
+// item functions ^^^^
+// ----------------------------------
+// plotpoint functions vvvv
+
     public static async Task<string> GetAllPlotpoints()
     {
       RestClient client = new RestClient("http://localhost:5102/");
@@ -95,6 +113,39 @@ namespace ARatsLifeClient.Models
       RestResponse response = await client.GetAsync(request);
       return response.Content;
     }
+
+// plotpoint functions ^^^^
+// ---------------------------------------
+// choices functions vvvv
+
+
+public static async Task<string> GetAllChoices()
+    {
+      RestClient client = new RestClient("http://localhost:5102/");
+      RestRequest request = new RestRequest($"api/choices", Method.Get);
+      RestResponse response = await client.GetAsync(request);
+      return response.Content;
+    }
+     
+    public static async Task<string> GetChoiceDetail(int id)
+    {
+      RestClient client = new RestClient("http://localhost:5102");
+      RestRequest request = new RestRequest($"api/choices/{id}", Method.Get);
+      RestResponse response = await client.GetAsync(request);
+      return response.Content;
+    }
+
+    public static async void PostChoice(string newChoice)
+    {
+      RestClient client = new RestClient("http://localhost:5102/");
+      RestRequest request = new RestRequest($"api/choices", Method.Post);
+      request.AddHeader("Content-Type", "application/json");
+      request.AddJsonBody(newChoice);
+      await client.PostAsync(request);
+    }
+
+
+
 
     //--------------------------- 
     // for application users

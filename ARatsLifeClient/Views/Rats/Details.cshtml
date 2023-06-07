@@ -16,6 +16,20 @@ else
   <p> This Rat's doing alright. Stay frosty! </p>
 }
 
+<p>Your Inventory:
+  @if (Model.ItemInventory.Count == 0)
+  {
+    <p>You have nothing in your bag!</p>
+  }
+  else
+  {
+    foreach (Inventory inventory in Model.ItemInventory)
+    {
+      <p>Item: @inventory.Item.Name</p>
+    }
+  }
+</p>
+
 <p>Journey: 
   @if (Model.Journey.Count == 0)
   {
@@ -26,6 +40,7 @@ else
     @foreach (Journey journey in Model.Journey)
     {
       <p>Plotpoint: @journey.Plotpoint.Description</p>
+      <p>You chose to: @journey.Choice.Description</p>
     }
   }
 </p>
