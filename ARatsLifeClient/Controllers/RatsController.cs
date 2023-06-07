@@ -28,4 +28,30 @@ public class RatsController : Controller
     Rat.Post(rat);
     return RedirectToAction("Index");
   }
+
+  public ActionResult Edit(int id)
+  {
+    Rat changeRat = Rat.GetDetails(id);
+    return View(changeRat);
+  }
+
+  [HttpPost]
+  public ActionResult Edit(Rat changeRat)
+  {
+    Rat.Put(changeRat);
+    return RedirectToAction("Details", new { id = changeRat.RatId});
+  }
+
+  public ActionResult Delete(int id)
+  {
+    Rat deleteRat = Rat.GetDetails(id);
+    return View(deleteRat);
+  }
+
+  [HttpPost, ActionName("Delete")]
+  public ActionResult DeleteConfirmed(int id)
+  {
+    Rat.Delete(id);
+    return RedirectToAction("Index");
+  }
 }

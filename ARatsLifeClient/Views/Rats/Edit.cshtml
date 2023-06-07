@@ -1,0 +1,19 @@
+@{
+  ViewData ["Title"] = $"Edit {Model.Name}";
+}
+
+@model ARatsLifeClient.Models.Rat
+
+<h4>Edit @Model.Name</h4>
+
+@using (Html.BeginForm())
+{
+  @Html.HiddenFor(model => model.RatId)
+  @Html.LabelFor(model => model.Name)
+  @Html.TextBoxFor(model => model.Name, new { @Value = Model.Name})
+  @Html.HiddenFor(model => model.Heat)
+  @Html.HiddenFor(model => model.InventoryId)
+  <br>
+  <br>
+  <input type="submit" value="Edit Rat" class="btn btn-primary"/>
+}

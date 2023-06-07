@@ -17,3 +17,5 @@ else
 
 @Html.ActionLink("Back to Rats", "Index")
 @Html.ActionLink("Rat Creater", "Create")
+@Html.ActionLink("Edit Rat", "Edit", new { id = Model.RatId})
+@Html.ActionLink("DANGER: DELETE RAT", "Delete", new { id = Model.RatId})

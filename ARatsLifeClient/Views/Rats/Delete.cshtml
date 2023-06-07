@@ -1,0 +1,15 @@
+@{
+  ViewData["Title"] = $"Delete {Model.Name}";
+}
+
+@model ARatsLifeClient.Models.Rat
+
+<h4>ARE YOU SURE?!?!?! @Model.Name?</h4>
+
+@using (Html.BeginForm())
+{
+  @Html.HiddenFor(model => model.RatId)
+  <input type="submit" value="Delete" class="btn btn-primary"/>
+}
+
+@Html.ActionLink("Back to details", "Details", new { id = @Model.RatId})

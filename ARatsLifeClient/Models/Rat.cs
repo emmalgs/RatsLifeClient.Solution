@@ -1,5 +1,3 @@
-using System.Collections.Generic;
-using System;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System.ComponentModel.DataAnnotations;
@@ -12,7 +10,7 @@ public class Rat
   public string Name { get; set; }
   [Range(0, Int16.MaxValue, ErrorMessage = "The field {0} must be a non negative integer")]
   public int Heat { get; set; }
-  public int IndentoryId { get; set; }
+  public int InventoryId { get; set; }
 
   public static List<Rat> GetRats()
   {
@@ -46,5 +44,10 @@ public class Rat
     {
       string jsonRat = JsonConvert.SerializeObject(changeRat);
       ApiHelper.Put(changeRat.RatId, jsonRat);
+    }
+
+    public static void Delete(int id)
+    {
+      ApiHelper.Delete(id);
     }
 }

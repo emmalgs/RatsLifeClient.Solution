@@ -35,8 +35,16 @@ namespace ARatsLifeClient.Models
       RestClient client = new RestClient("http://localhost:5102/");
       RestRequest request = new RestRequest($"api/rats/{id}", Method.Put);
       request.AddHeader("Content-Type", "application/json");
-      request.AddJsonBody("changeRat");
+      request.AddJsonBody(changeRat);
       await client.PutAsync(request);
+    }
+
+    public static async void Delete(int id)
+    {
+      RestClient client = new RestClient("http://localhost:5102/");
+      RestRequest request = new RestRequest($"api/rats/{id}", Method.Delete);
+      request.AddHeader("Content-Type", "application/json");
+      await client.DeleteAsync(request);
     }
 
     //--------------------------- 
